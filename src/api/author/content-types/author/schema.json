@@ -13,12 +13,13 @@
   "pluginOptions": {},
   "attributes": {
     "authorname": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "authordp": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images",
         "files",
@@ -27,13 +28,16 @@
       ]
     },
     "authorabout": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "authordesignation": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "authorcontact": {
-      "type": "string"
+      "type": "string",
+      "required": true
     },
     "blogs": {
       "type": "relation",
