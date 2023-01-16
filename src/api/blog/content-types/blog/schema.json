@@ -34,6 +34,16 @@
       "relation": "manyToMany",
       "target": "api::category.category",
       "inversedBy": "blogs"
+    },
+    "coverpic": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": false
     }
   }
 }
