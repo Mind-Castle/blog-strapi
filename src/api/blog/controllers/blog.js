@@ -59,4 +59,44 @@ module.exports = createCoreController("api::blog.blog", ({ strapi }) => ({
       return null;
     }
   },
+  async allblogs() {
+    let data = []
+    const entries = await strapi.entityService.findMany("api::blog.blog", {
+      fields: ["title", "blogcontent", "createdAt","slug"],
+      populate: {
+        categories: true,
+        coverpic: true,
+        author: {
+          populate: {
+            authordp: true,
+          },
+        },
+      },
+    });
+
+    if (entries && entries.length > 0) {
+      for (let i = 0; i< entries.length; i++)
+      {
+        let k = {}
+        k["categories"] = []
+        k.categories = entries[i].categories.map((item) => item.category);
+        k.authorabout = entries[i].author.authorabout;
+        k.authorname = entries[i].author.authorname;
+        k.title = entries[i].title;
+        k.blogid = entries[i].slug;
+        k.blogcontent = entries[i].blogcontent;
+        k.authordesignation = entries[i].author.authordesignation;
+        k.authordp = entries[i].author.authordp.url;
+        k.publishdate = entries[i].createdAt;
+        if (entries[i].coverpic) {
+          k.coverimage = entries[i].coverpic.url;
+        }
+        data.push(k)
+      }
+
+      return { data };
+    } else {
+      return null;
+    }
+  },
 }));

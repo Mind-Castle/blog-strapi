@@ -12,5 +12,11 @@ module.exports = {
       handler: "blog.blogbyslug",
       config: { auth: false },
     },
+    {
+      method: "GET",
+      path: "/getAllBlogs",
+      handler: "blog.allblogs",
+      config: { auth: false },
+    },
   ],
 };
